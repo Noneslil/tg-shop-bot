@@ -3,10 +3,10 @@ import telebot
 from telebot import types
 
 # ==========================================
-# 1. ОСНОВНЫЕ НАСТРОЙКИ (Замени на свои данные!)
+# 1. ОСНОВНЫЕ НАСТРОЙКИ
 # ==========================================
-TOKEN = 'ТВОЙ_ТОКЕН_ОТ_BOTFATHER'
-ADMIN_USERNAME = '@ТВОЙ_ТЕЛЕГРАМ_НИК'  # На этот ник будут идти заказы
+TOKEN = '8923375368:AAEaQ8UJwVlpxTEU1TUUJv4j3thYBEZ1RRA'
+ADMIN_USERNAME = '@nifraga1'  # На этот ник будут идти заказы
 
 bot = telebot.TeleBot(TOKEN)
 
