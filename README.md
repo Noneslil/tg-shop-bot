@@ -1,18 +1,12 @@
-# tg-shop-bot
 import telebot
 from telebot import types
-
-# ==========================================
 # 1. ОСНОВНЫЕ НАСТРОЙКИ
-# ==========================================
 TOKEN = '8923375368:AAEaQ8UJwVlpxTEU1TUUJv4j3thYBEZ1RRA'
-ADMIN_USERNAME = '@nifraga1'  # На этот ник будут идти заказы
+ADMIN_USERNAME = '@nifraga1'
 
 bot = telebot.TeleBot(TOKEN)
 
-# ==========================================
 # 2. БАЗА ДАННЫХ КАТАЛОГА (Категории и Товары)
-# ==========================================
 CATALOG = {
     "sneakers": {
         "title": "👟 Кроссовки",
@@ -44,9 +38,7 @@ CATALOG = {
     }
 }
 
-# ==========================================
 # 3. ГЛАВНОЕ МЕНЮ (/start)
-# ==========================================
 @bot.message_handler(commands=['start'])
 def start_command(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -65,9 +57,7 @@ def start_command(message):
     )
     bot.send_message(message.chat.id, welcome_text, reply_markup=markup, parse_mode="Markdown")
 
-# ==========================================
 # 4. ОБРАБОТКА КНОПОК ГЛАВНОГО МЕНЮ
-# ==========================================
 @bot.message_handler(content_types=['text'])
 def handle_menu(message):
     # Выбор категории
@@ -104,9 +94,7 @@ def handle_menu(message):
         support_text = f"📩 По всем вопросам и для заказа пишите менеджеру: {ADMIN_USERNAME}"
         bot.send_message(message.chat.id, support_text)
 
-# ==========================================
 # 5. ИНЛАЙН-НАВИГАЦИЯ (Категории, Товары, Заказ)
-# ==========================================
 @bot.callback_query_handler(func=lambda call: True)
 def handle_inline(call):
     # 5.1. Пользователь выбрал категорию
@@ -153,8 +141,6 @@ def handle_inline(call):
         )
         bot.send_message(call.message.chat.id, order_success_msg, parse_mode="Markdown")
 
-# ==========================================
 # 6. ЗАПУСК СЕРВЕРА
-# ==========================================
 print("🚀 Бот-Каталог успешно запущен!")
 bot.polling(none_stop=True)
